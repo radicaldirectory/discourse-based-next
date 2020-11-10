@@ -8,7 +8,56 @@
 
 /* Write your own custom component styles here */
 .btn-blue {
-  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  @apply px-4 py-2 font-bold text-white bg-teal-600 rounded-full;
+}
+
+.topic-content {
+  & aside {
+    @apply block p-4 mb-4 shadow-lg rounded-xl;
+  }
+  & .onebox header {
+    @apply flex my-2;
+    & a {
+      @apply text-gray-700;
+    }
+  }
+  & img {
+    @apply w-full;
+  }
+  & aside.onebox .onebox-body img {
+    max-width: 25%;
+    float: left;
+    margin: 0 1rem 0.3rem 0;
+  }
+  & .onebox .site-icon {
+    width: 16px;
+    height: 16px;
+    margin: 0 3px 0 0;
+    vertical-align: middle;
+  }
+  & article {
+  }
+  & aside.onebox .onebox-body {
+    clear: both;
+    & h3 {
+      margin-top: 0;
+    }
+  }
+  & .d-icon,
+  & .informations,
+  & .filename {
+    @apply hidden;
+  }
+}
+
+.topic-list {
+  @apply w-full m-2;
+  & .topic-list-item {
+    @apply p-2 text-lg text-pink-900;
+  }
+  & .topic-list-item:nth-child(even) {
+    @apply bg-gray-100;
+  }
 }
 
 /* Start purging... */
