@@ -1,14 +1,10 @@
-import Link from "next/link";
-
 function CategoryList({ categories }) {
   return (
     <ul className="flex items-center mx-auto my-5 space-x-4">
-      {categories.map((v, i) => {
+      {categories.map((category, index) => {
         return (
-          <li key={i}>
-            <Link href={`/category/${v.id}`}>
-              <a className="no-underline btn-blue">{v.name}</a>
-            </Link>
+          <li key={index}>
+            <a className="no-underline btn-blue">{category.name}</a>
           </li>
         );
       })}

@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-const TopicListItem = ({ value }) => {
+const TopicListItem = ({ topic }) => {
   return (
-    <li className="topic-list-item">
-      <Link href={`/topic/${value.id}`}>
-        <a className="no-underline">{value.title}</a>
+    <div className="topic-list-item">
+      <Link href={`/topic/${topic.id}`}>
+        <a className="no-underline">{topic.title}</a>
       </Link>
-    </li>
+    </div>
   );
 };
 

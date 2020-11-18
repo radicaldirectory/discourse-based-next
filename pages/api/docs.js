@@ -3,11 +3,11 @@ import QueryString from "querystring";
 
 // This API route handles a 'search', 'tags' and 'page'
 
-function queryConcatenator(queries) {
-  /* Discourse does not accept multiple seperate query string values for the same key.
-  i.e. tags=prison&tags=abolition will not return a result with both filters applied, only one of them.
-  this function takes an array of queries and concatenates them in the format Discourse expects */
+/* Discourse does not accept multiple seperate query string values for the same key.
+i.e. tags=prison&tags=abolition will not return a result with both filters applied, only one of them.
+queryConcatenator takes an array of queries and concatenates them in the format Discourse expects */
 
+function queryConcatenator(queries) {
   if (!queries) return null;
   if (Array.isArray(queries)) {
     return queries.join("|");

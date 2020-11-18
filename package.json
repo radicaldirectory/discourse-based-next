@@ -9,6 +9,7 @@
   "dependencies": {
     "@tailwindcss/typography": "^0.2.0",
     "axios": "^0.21.0",
+    "interweave": "^12.6.0",
     "next": "latest",
     "postcss-nesting": "^7.0.1",
     "react": "^16.13.1",

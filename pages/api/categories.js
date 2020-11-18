@@ -26,9 +26,11 @@ export async function getCategories() {
   return categories;
 }
 
-export default async (_, res) => {
+async function returnCategories(_, res) {
   const gotCategories = await getCategories();
   return res.status(200).json({
     gotCategories,
   });
-};
+}
+
+export default returnCategories;

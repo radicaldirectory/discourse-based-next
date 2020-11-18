@@ -47,7 +47,8 @@ function TopicList({ categories }) {
   const isRefreshing = isValidating && data && data.length === size;
 
   return (
-    <Layout categories={categories}>
+    // <Layout categories={categories}>
+    <>
       <ul className="self-center mt-5 topic-list">
         {isEmpty ? <p>No topics found.</p> : null}
         {topicsPages.map((topicsPage) => {
@@ -92,18 +93,19 @@ function TopicList({ categories }) {
           topic(s){" "}
         </span>
       </p>
-    </Layout>
+    </>
+    // </Layout>
   );
 }
 
-export async function getStaticProps() {
-  const categories = await getCategories();
+// export async function getStaticProps() {
+//   const categories = await getCategories();
 
-  return {
-    props: {
-      categories,
-    },
-  };
-}
+//   return {
+//     props: {
+//       categories,
+//     },
+//   };
+// }
 
 export default TopicList;

@@ -1,49 +1,54 @@
 import { useRouter } from "next/router";
-import useSWR from "swr";
 import Layout from "@components/Layout";
+import TopicContent from "@components/TopicContent";
+import { getCategories } from "@api/categories";
+import { getTopic } from "@api/t/[topicID]";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+// import useSWR from "swr";
+// import { fetcher } from "@lib/utils";
 
-const Topic = () => {
+function Topic({ categories, topic }) {
   const router = useRouter();
-  const { id } = router.query;
-
-  const { data, error } = useSWR(`/api/t/${id}`, fetcher);
-
-  //console.log(data);
-
-  function createMarkup(content) {
-    return { __html: content };
+  // const result = useSWR(`/api/t/${router.query.id}`, fetcher);
+  if (!categories) {
+    return <div>Loading...</div>;
   }
 
-  let mappedData = [];
-
-  if (data) {
-    mappedData.push(<h1>{data.topicTitle}</h1>);
-    mappedData.push(
-      data.topicBody.map((v, i) => {
-        return (
-          <div key={i} dangerouslySetInnerHTML={createMarkup(v.cooked)}></div>
-        );
-      })
-    );
-    console.log(mappedData);
-  }
-
-  const loadContent = () => {
-    if (error) return <div>failed to load</div>;
-    if (!data) return <div>loading...</div>;
-    return mappedData;
-  };
+  // console.log(categories);
 
   return (
-    <Layout>
-      <div className="self-center mt-5 prose topic-content lg:prose-lg">
+    <Layout categories={categories}>
+      <>
         <hr />
-        {loadContent()}
-      </div>
+        {router.isFallback ? (
+          <div>Loading...</div>
+        ) : (
+          <TopicContent topic={topic} />
+        )}
+      </>
     </Layout>
   );
-};
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params }) {
+  const categories = await getCategories();
+  const topic = await getTopic(params.id);
+
+  // console.log(params.id);
+
+  return {
+    props: {
+      categories,
+      topic,
+    },
+  };
+}
 
 export default Topic;

@@ -1,29 +1,19 @@
-//import useSWR from "swr";
-import Link from "next/link";
+import TagButton from "@components/TagButton";
+import { forceArray } from "@lib/utils";
 
-//const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-function TagList({ docs }) {
-  // const { data, error } = useSWR("/api/docs", fetcher);
-
-  // if (error) return <div>failed to load</div>;
-  // if (!data) return <div>loading...</div>;
-
+function TagList({ optionTags, onToggleTags, queryTags }) {
+  const activeTags = forceArray(queryTags);
   return (
-    <ul className="flex flex-wrap items-center my-5">
-      {docs.tags.map((v, i) => {
-        return (
-          <li
-            key={i}
-            className="px-3 py-1 mb-2 mr-3 border rounded-full hover:bg-teal-300 hover:text-white"
-          >
-            {/* <Link href={`/category/${v.id}`}> */}
-            <a className="no-underline">{v.id}</a>
-            {/* </Link> */}
-          </li>
-        );
-      })}
-    </ul>
+    <div className="flex flex-wrap items-center my-5">
+      {optionTags.map((tag, index) => (
+        <TagButton
+          key={index}
+          tag={tag.id}
+          onToggleTags={onToggleTags}
+          active={tag.active}
+        />
+      ))}
+    </div>
   );
 }
 
