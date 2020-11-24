@@ -13,7 +13,12 @@ import TagList from "@components/TagList";
 import TopicList from "@components/TopicList";
 
 //Utils
-import { fetcher, forceArray, queryString } from "@lib/utils";
+import {
+  fetcher,
+  forceArray,
+  queryStringify,
+  queryStringify2,
+} from "@lib/utils";
 
 //Static Gen Data Fetch
 export async function getStaticProps() {
@@ -34,7 +39,12 @@ export default function IndexPage({ categories, docs }) {
   const [optionTags, setOptionTags] = useState([]);
   const [topicsResults, setTopicsResults] = useState([]);
   const [topicsPage, setTopicsPage] = useState(0);
-  const result = useSWR(`/api/docs${queryString(router.query.tags)}`, fetcher);
+  // const docsRoute = new URL("/api/docs", "https://x.x");
+  // const result = useSWR(docsRoute, fetcher);
+  const result = useSWR(
+    `/api/docs?${queryStringify2("", router.query.tags, topicsPage)}`,
+    fetcher
+  );
 
   console.log("router.query.tags =");
   console.log(router.query.tags);
@@ -58,9 +68,10 @@ export default function IndexPage({ categories, docs }) {
     let newTags = oldTags.includes(tag)
       ? oldTags.filter((i) => i !== tag)
       : [...oldTags, tag];
-    router.push(queryString(newTags), undefined, {
+    router.push("?" + queryStringify2("", newTags, topicsPage), undefined, {
       shallow: true,
     });
+    //console.log(queryStringify2("search", newTags, "page"));
   };
 
   return (

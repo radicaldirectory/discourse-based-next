@@ -51,6 +51,15 @@ export default function Test() {
 
   console.log(newArray);
 
+  const testURL = new URL("/test", "https://www.notarealwebsite.com");
+  const fullQueries = QueryString.stringify({
+    search: "req.query.search",
+    tags: bass,
+    page: "req.query.page",
+  });
+  testURL.search = fullQueries;
+  console.log(testURL.search);
+
   return (
     <div>
       <h1>Test Page</h1>
