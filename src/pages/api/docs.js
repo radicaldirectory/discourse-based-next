@@ -62,8 +62,22 @@ export async function getDocs(req) {
   return docs;
 }
 
+export async function getAllTopicIDS() {
+  let pageLimit = 5;
+  let idArray = [];
+  for (let i = 0; i < pageLimit; i++) {
+    let results = await getDocs({ query: { page: i } });
+    let newIDs = idArray.concat(results.topics.map((topic) => `${topic.id}`));
+    idArray = newIDs;
+  }
+  console.log(idArray);
+  return idArray;
+}
+
 export default async (req, res) => {
   const gotDocs = await getDocs(req);
+
+  getAllTopicIDS();
 
   return res.status(200).json({
     gotDocs,

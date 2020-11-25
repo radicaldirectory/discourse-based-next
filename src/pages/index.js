@@ -46,8 +46,8 @@ export default function IndexPage({ categories, docs }) {
     fetcher
   );
 
-  console.log("router.query.tags =");
-  console.log(router.query.tags);
+  // console.log("router.query.tags =");
+  // console.log(router.query.tags);
 
   //initial load static-fetched data into state
   useEffect(() => {

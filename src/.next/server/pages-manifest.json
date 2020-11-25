@@ -1,0 +1,15 @@
+{
+  "/_app": "pages/_app.js",
+  "/api/categories": "pages/api/categories.js",
+  "/api/docs": "pages/api/docs.js",
+  "/api/t/[topicID]": "pages/api/t/[topicID].js",
+  "/category/[id]": "pages/category/[id].html",
+  "/": "pages/index.js",
+  "/results": "pages/results.js",
+  "/static": "pages/static.js",
+  "/test": "pages/test.html",
+  "/topic/[id]": "pages/topic/[id].js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}
