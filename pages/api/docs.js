@@ -54,12 +54,12 @@ export async function getDocs(req) {
           };
         }),
       };
+      return docs;
     })
     .catch((error) => {
       console.log(error);
+      return error;
     });
-
-  return docs;
 }
 
 export async function getAllTopicIDS() {
