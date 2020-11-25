@@ -28,7 +28,7 @@ export default function Test() {
 
   let bass = ["bassguitar", "guitar"];
 
-  console.log(oldArray);
+  //console.log(oldArray);
   // console.log(things);
 
   // let newArray = oldArray.map((v, i) => {
@@ -49,7 +49,7 @@ export default function Test() {
     return !bass.includes(item.id);
   });
 
-  console.log(newArray);
+  //console.log(newArray);
 
   const testURL = new URL("/test", "https://www.notarealwebsite.com");
   const fullQueries = QueryString.stringify({
@@ -58,7 +58,7 @@ export default function Test() {
     page: "req.query.page",
   });
   testURL.search = fullQueries;
-  console.log(testURL.search);
+  //console.log(testURL.search);
 
   return (
     <div>
