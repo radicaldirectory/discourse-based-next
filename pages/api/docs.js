@@ -41,6 +41,7 @@ export async function getDocs(req) {
   await Axios(config)
     .then((response) => {
       // the API returns all this random data. this just returns the important stuff
+
       docs = {
         categories: response.data.categories,
         tags: response.data.tags,
@@ -74,12 +75,14 @@ export async function getAllTopicIDS() {
   return idArray;
 }
 
-export default async (req, res) => {
+export default async function returnDocs(req, res) {
   const gotDocs = await getDocs(req);
 
-  getAllTopicIDS();
+  // console.log(gotDocs);
+
+  // getAllTopicIDS();
 
   return res.status(200).json({
     gotDocs,
   });
-};
+}

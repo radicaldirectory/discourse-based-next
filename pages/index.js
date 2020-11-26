@@ -24,6 +24,7 @@ import {
 export async function getStaticProps() {
   const categories = await getCategories();
   const docs = await getDocs();
+  // const docs = "";
   return {
     props: {
       categories,
@@ -85,3 +86,11 @@ export default function IndexPage({ categories, docs }) {
     </Layout>
   );
 }
+
+// IndexPage.defaultProps = {
+//   categories: [],
+//   docs: {
+//     tags: ["default"],
+//     topics: ["default"],
+//   },
+// };

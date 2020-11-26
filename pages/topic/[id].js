@@ -35,7 +35,7 @@ export async function getStaticPaths() {
   //const idsArray = await getAllTopicIDS();
 
   const idsStatic = [
-    // "128",
+    "128",
     // "54",
     // "127",
     // "126",
@@ -44,22 +44,22 @@ export async function getStaticPaths() {
     // "120",
     // "119",
     // "118",
-    "117",
-    "116",
-    "113",
-    "114",
-    "112",
-    "110",
-    "109",
-    "108",
-    "107",
-    "106",
-    "105",
-    "101",
-    "104",
-    "103",
-    "102",
-    "100",
+    // "117",
+    // "116",
+    // "113",
+    // "114",
+    // "112",
+    // "110",
+    // "109",
+    // "108",
+    // "107",
+    // "106",
+    // "105",
+    // "101",
+    // "104",
+    // "103",
+    // "102",
+    // "100",
     // "99",
     // "98",
     // "97",
@@ -116,7 +116,7 @@ export async function getStaticPaths() {
 
   return {
     paths: allPaths,
-    fallback: false, //set to true if not doing SSG
+    fallback: true, //set to true if not doing SSG
   };
 }
 
