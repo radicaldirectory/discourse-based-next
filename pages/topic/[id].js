@@ -4,6 +4,7 @@ import TopicContent from "@components/TopicContent";
 import { getCategories } from "@api/categories";
 import { getTopic } from "@api/t/[topicID]";
 import { getAllTopicIDS } from "@api/docs";
+import Link from "next/link";
 
 // import useSWR from "swr";
 // import { fetcher } from "@lib/utils";
@@ -20,6 +21,9 @@ function Topic({ categories, topic }) {
   return (
     <Layout categories={categories}>
       <>
+        <Link href="/">
+          <a className="px-2 py-1 mb-2 font-bold text-gray-800 ">← back</a>
+        </Link>
         <hr />
         {router.isFallback ? (
           <div>Loading...</div>

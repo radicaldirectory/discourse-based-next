@@ -77,6 +77,9 @@ export default function IndexPage({ categories, docs }) {
 
   return (
     <Layout categories={categories}>
+      <p className="mt-5 text-2xl text-center text-gray-800">
+        click a tag to filter results
+      </p>
       <TagList
         optionTags={optionTags}
         queryTags={router.query.tags}
