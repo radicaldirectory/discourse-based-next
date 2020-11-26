@@ -85,3 +85,11 @@ export default function IndexPage({ categories, docs }) {
     </Layout>
   );
 }
+
+IndexPage.defaultProps = {
+  categories: [],
+  docs: {
+    tags: ["default"],
+    topics: ["default"],
+  },
+};
