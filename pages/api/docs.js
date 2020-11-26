@@ -77,7 +77,7 @@ export async function getAllTopicIDS() {
 export default async (req, res) => {
   const gotDocs = await getDocs(req);
 
-  getAllTopicIDS();
+  // getAllTopicIDS();
 
   return res.status(200).json({
     gotDocs,
