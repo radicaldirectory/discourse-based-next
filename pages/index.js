@@ -23,8 +23,8 @@ import {
 //Static Gen Data Fetch
 export async function getStaticProps() {
   const categories = await getCategories();
-  // const docs = await getDocs();
-  const docs = "";
+  const docs = await getDocs();
+  // const docs = "";
   return {
     props: {
       categories,
@@ -51,10 +51,10 @@ export default function IndexPage({ categories, docs }) {
   // console.log(router.query.tags);
 
   //initial load static-fetched data into state
-  // useEffect(() => {
-  //   setOptionTags(docs.tags);
-  //   setTopicsResults(docs.topics);
-  // }, []);
+  useEffect(() => {
+    setOptionTags(docs.tags);
+    setTopicsResults(docs.topics);
+  }, []);
 
   //pass client-fetched updated data into state
   useEffect(() => {
