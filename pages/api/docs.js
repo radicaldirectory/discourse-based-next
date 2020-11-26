@@ -18,14 +18,14 @@ function queryConcatenator(queries) {
 
 export async function getDocs(req) {
   const docsPath = new URL("/docs.json", "https://radical.directory/");
-  // if (req) {
-  //   const fullQueries = QueryString.stringify({
-  //     search: req.query.search,
-  //     tags: queryConcatenator(req.query.tags),
-  //     page: req.query.page,
-  //   });
-  //   docsPath.search = fullQueries;
-  // }
+  if (req) {
+    const fullQueries = QueryString.stringify({
+      search: req.query.search,
+      tags: queryConcatenator(req.query.tags),
+      page: req.query.page,
+    });
+    docsPath.search = fullQueries;
+  }
 
   let config = {
     method: "get",
