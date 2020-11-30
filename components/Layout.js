@@ -8,7 +8,6 @@ function Layout(props) {
         {/* <CategoryList categories={props.categories} /> */}
 
         {props.children}
-        <hr className="my-6 black" />
         <p className="mt-5 text-lg text-center text-gray-700 sm:text-xl lg:text-2xl">
           this site is a preview of a grassroots media project in development
           called <b>Radical Directory</b>
