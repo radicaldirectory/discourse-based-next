@@ -8,14 +8,14 @@ function Layout(props) {
         {/* <CategoryList categories={props.categories} /> */}
 
         {props.children}
-        <p className="mt-5 text-lg text-center text-gray-700 sm:text-xl lg:text-2xl">
+        <p className="mt-5 text-lg text-center text-gray-700 sm:text-xl">
           this site is a preview of a grassroots media project in development
           called <b>Radical Directory</b>
         </p>
-        <p className="mt-5 text-lg text-center text-gray-700 sm:text-xl lg:text-2xl">
+        <p className="mt-5 text-lg text-center text-gray-700 sm:text-xl">
           official launch will be in 2021
         </p>
-        <p className="my-5 text-lg text-center text-gray-700 sm:text-xl lg:text-2xl">
+        <p className="my-5 text-lg text-center text-gray-700 sm:text-xl">
           for more info or to get involved, contact us at{" "}
           <i>radicaldirectory@protonmail.com</i>
         </p>
