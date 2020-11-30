@@ -1,7 +1,6 @@
 //Hooks
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import { useSWRInfinite } from "swr";
 
 //API call functions
 import { getCategories } from "@api/categories";
@@ -15,23 +14,14 @@ import TopicListPage from "@components/TopicList";
 import SearchInput from "@components/SearchInput";
 
 //Utils
-import {
-  fetcher,
-  forceArray,
-  queryStringify,
-  queryStringify2,
-  getTopicsInfinite,
-} from "@lib/utils";
+import { forceArray, queryStringify2, getTopicsInfinite } from "@lib/utils";
 
-//Static Gen Data Fetch
+//Get Static Props
 export async function getStaticProps() {
   const categories = await getCategories();
-  // const docs = await getDocs();
-  // const docs = "";
   return {
     props: {
       categories,
-      // docs,
     },
   };
 }
@@ -80,7 +70,7 @@ export default function IndexPage({ categories }) {
 
   return (
     <Layout categories={categories}>
-      <p className="my-5 text-xl text-center text-gray-600">
+      <p className="my-5 text-xl text-center text-black sm:text-gray-600">
         ✨ search or click a tag to filter results ✨
       </p>
       <SearchInput handler={handleSearchQuery} searchQuery={searchQuery} />
@@ -90,7 +80,7 @@ export default function IndexPage({ categories }) {
         onToggleTags={onToggleTags}
       />
       {topicPages}
-      {isLoadingMore && !isReachingEnd && <div className="mb-5 spinner"></div>}
+      {isLoadingMore && !isReachingEnd && <div className="my-8 spinner"></div>}
       {!isReachingEnd && <Waypoint onEnter={loadMoreHandler} />}
     </Layout>
   );

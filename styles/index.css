@@ -24,6 +24,9 @@
   & img {
     @apply w-full;
   }
+  & .onebox {
+    @apply bg-white;
+  }
   & aside.onebox .onebox-body img {
     max-width: 25%;
     float: left;
@@ -53,7 +56,7 @@
 .topic-list {
   @apply w-full m-2;
   & .topic-list-item {
-    @apply p-2 text-lg text-pink-900;
+    @apply p-2 text-pink-900;
   }
   & .topic-list-item:nth-child(even) {
     @apply bg-gray-100;
