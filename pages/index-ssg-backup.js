@@ -8,11 +8,9 @@ import { getCategories } from "@api/categories";
 import { getDocs } from "@api/docs";
 
 //Components
-import { Waypoint } from "react-waypoint";
 import Layout from "@components/Layout";
 import TagList from "@components/TagList";
 import TopicListPage from "@components/TopicList";
-import SearchInput from "@components/SearchInput";
 
 //Utils
 import {
@@ -20,7 +18,6 @@ import {
   forceArray,
   queryStringify,
   queryStringify2,
-  getTopicsInfinite,
 } from "@lib/utils";
 
 //Static Gen Data Fetch
@@ -40,31 +37,35 @@ export async function getStaticProps() {
 
 export default function IndexPage({ categories }) {
   const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState([]);
+  const [optionTags, setOptionTags] = useState([]);
+  // const [topicsResults, setTopicsResults] = useState([]);
 
-  const {
-    topics,
-    gotTags,
-    error,
-    isLoadingMore,
-    size,
-    setSize,
-    isReachingEnd,
-  } = getTopicsInfinite(router.query.tags, searchQuery);
+  const getKey = (index) => {
+    return `/api/docs?${queryStringify2("", [router.query.tags], index)}`;
+  };
 
-  const topicPages = topics.map((page, index) => (
-    <TopicListPage topics={page} key={index} />
-  ));
+  const { data, size, setSize } = useSWRInfinite(getKey, fetcher, {
+    initialSize: 1,
+  });
 
-  //Handlers
+  const topics = data ? data.map((result) => result.gotDocs.topics) : [];
+  const topicPages = topics.map((page) => <TopicListPage topics={page} />);
 
+  // pass client-fetched updated data into state
+  useEffect(() => {
+    if (!data) return;
+    console.log(data);
+    setOptionTags(data[0].gotDocs?.tags);
+    // setTopicsResults(data[size - 1].gotDocs?.topics);
+  }, [data]);
+
+  //Tag click event handler
   const onToggleTags = (tag) => {
-    setSize(1);
     let oldTags = forceArray(router.query.tags);
     let newTags = oldTags.includes(tag)
       ? oldTags.filter((i) => i !== tag)
       : [...oldTags, tag];
-    router.push("?" + queryStringify2("", newTags, size), undefined, {
+    router.push("?" + queryStringify2("", newTags, topicsPage), undefined, {
       shallow: true,
     });
   };
@@ -73,25 +74,32 @@ export default function IndexPage({ categories }) {
     setSize(size + 1);
   };
 
-  const handleSearchQuery = (event) => {
-    setSearchQuery(event.target.value);
-    setSize(1);
-  };
-
   return (
     <Layout categories={categories}>
-      <p className="my-5 text-xl text-center text-gray-600">
-        ✨ search or click a tag to filter results ✨
+      <p className="mt-5 text-xl text-center text-gray-600">
+        click a tag to filter results
       </p>
-      <SearchInput handler={handleSearchQuery} searchQuery={searchQuery} />
       <TagList
-        optionTags={gotTags}
+        optionTags={optionTags}
         queryTags={router.query.tags}
         onToggleTags={onToggleTags}
       />
       {topicPages}
-      {isLoadingMore && !isReachingEnd && <div className="mb-5 spinner"></div>}
-      {!isReachingEnd && <Waypoint onEnter={loadMoreHandler} />}
+      <button
+        className="ml-2 btn-blue"
+        disabled={false}
+        onClick={loadMoreHandler}
+      >
+        load more
+      </button>
     </Layout>
   );
 }
+
+// IndexPage.defaultProps = {
+//   categories: [],
+//   docs: {
+//     tags: ["default"],
+//     topics: ["default"],
+//   },
+// };
