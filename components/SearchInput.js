@@ -6,7 +6,7 @@ function SearchInput({ searchQuery, handler }) {
     <label htmlFor="search-input">
       <input
         type="text"
-        className="w-full p-2 text-gray-600 border"
+        className="w-full p-2 text-gray-600 placeholder-gray-500 placeholder-opacity-100 border border-pink-300 rounded"
         value={searchQuery}
         id="search-input"
         placeholder="Search..."
