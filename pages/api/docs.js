@@ -23,6 +23,8 @@ export async function getDocs(req) {
       search: req.query.search,
       tags: queryConcatenator(req.query.tags),
       page: req.query.page,
+      ascending: "true",
+      order: "title",
     });
     docsPath.search = fullQueries;
   }
