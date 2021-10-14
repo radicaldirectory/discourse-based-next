@@ -1,3 +1,5 @@
+this repo was created while we had a Discourse server and Meri had this (later abandoned) idea to use it as a CMS. it fetched data from the discourse to create a frontend with nextjs
+
 # Tailwind CSS example
 
 This is an example of using [Tailwind CSS](https://tailwindcss.com) in a Next.js project.
